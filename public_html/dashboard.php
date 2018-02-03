@@ -62,7 +62,7 @@
 					<div class="card-body">
 						<h5 class="card-title">Categories</h5>
 							<p class="card-text">Here you can manages your categories and you add new parent and sub categories </p>
-							<a href="#" class="btn btn-primary">Add</a>
+							<a href="#" data-toggle="modal" data-target="#form_category" class="btn btn-primary">Add</a>
 							<a href="#" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 					<div class="card-body">
 						<h5 class="card-title">Brands</h5>
 							<p class="card-text">Here you can manages your brand and you add new brand</p>
-							<a href="#" class="btn btn-primary">Add</a>
+							<a href="#" data-toggle="modal" data-target="#form_brand"class="btn btn-primary">Add</a>
 							<a href="#" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
@@ -82,13 +82,28 @@
 					<div class="card-body">
 						<h5 class="card-title">Products</h5>
 							<p class="card-text">Here you can manages your products and you add new products</p>
-							<a href="#" class="btn btn-primary">Add</a>
+							<a href="#" data-toggle="modal" data-target="#form_products" class="btn btn-primary">Add</a>
 							<a href="#" class="btn btn-primary">Manage</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	//category form
+	<?php 
+	include_once("/templates/category.php");
+	?>
+
+	//Brand form
+	<?php 
+	include_once("/templates/brand.php");
+	?>
+
+	//products form
+	<?php 
+	include_once("/templates/products.php");
+	?>
 
 </body>
 </html>
