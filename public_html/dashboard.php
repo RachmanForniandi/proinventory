@@ -90,18 +90,21 @@
 		</div>
 	</div>
 
-	//category form
+	
 	<?php 
+	//category form
 	include_once("/templates/category.php");
 	?>
 
-	//Brand form
+	
 	<?php 
+	//Brand form
 	include_once("/templates/brand.php");
 	?>
 
-	//products form
+	
 	<?php 
+	//products form
 	include_once("/templates/products.php");
 	?>
 

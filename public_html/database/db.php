@@ -11,7 +11,6 @@ class Database {
 		include_once("constants.php");
 		$this->con = new Mysqli(HOST,USER,PASS,DB);
 		if ($this->con) {
-			echo "Database connected.";
 			return $this->con;
 		}
 		return "DATABASE_CONNECTION_FAIL !!";
