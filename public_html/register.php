@@ -22,30 +22,34 @@
 		<div class="card mx-auto" style="width: 30rem;">
 			<div class="card-header">Register</div>
 			<div class="card-body">
-				<form id="register_form">
+				<form id="register_form" onsubmit="return false" autocomplete="off">
 					<div class="form-group">
 						<label for="username">Full Name</label>
 						<input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+						<small id="u_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="username">Email address</label>
 						<input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
-						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+						<small id="e_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="password1">Password</label>
 						<input type="password" name="password1" class="form-control" id="password1" placeholder="Password">
+						<small id="p1_error" class="form-text text-muted"></small>
 					</div>
 					<div class="form-group">
 						<label for="password2">Re-enter Password</label>
-						<input type="password" name="password2" class="form-control" id="password2" placeholder="Password">
+						<input type="password" name="password2" class="form-control" id="password2" placeholder="Password"><small id="p2_error" class="form-text text-muted"></small>
 					</div>
 					<div class="form-group">
 						<label for="usertype">Usertype</label>
 						<select name="usertype" class="form-control" id="usertype">
-							<option value="1">Admin</option>
-							<option value="0">User</option>
+							<option value="">Choose User Type</option>
+							<option value="admin">Admin</option>
+							<option value="user">User</option>
 						</select>
+						<small id="t_error" class="form-text text-muted"></small>
 					</div>
 					<button type="submit" name="user_register" class="btn btn-primary"><span class="fa fa-user"></span>&nbsp;Register</button>
 					<span><a href="index.php">Login</a></span>				
