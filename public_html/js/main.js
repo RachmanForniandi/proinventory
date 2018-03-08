@@ -6,7 +6,7 @@ $(document).ready(function(){
 		var  email = $("#email");
 		var  pass1 = $("#password1");
 		var  pass2 = $("#password2");
-		var  type = $("#usertype");
+		var  type = $("#userlevel");
 		//for email
 		var e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
 		if (name.val == "" || name.val().length < 6) {
@@ -73,6 +73,52 @@ $(document).ready(function(){
 			pass2.addClass("border-danger");
 			$("#p2_error").html("<span class='text-danger'>Password is not match.</span>");
 			status = true;
+		}
+	})
+
+	//For Login part
+	$("#form_login").on("submit",function(){
+		var  email = $("#log_email");
+		var  pass = $("#log_password");
+		var status = false;
+		if (email.val() == "") {
+			email.addClass("border-danger");
+			$("#e_error").html("<span class='text-danger'>Please Enter Email Address</span>");
+			status = false;
+		}else{
+			email.removeClass("border-danger");
+			$("#e_error").html("");
+			status = true;
+		}
+		if (pass.val() == "") {
+			pass.addClass("border-danger");
+			$("#p_error").html("<span class='text-danger'>Please Enter Password</span>");
+			status = false;
+		}else{
+			pass.removeClass("border-danger");
+			$("#p_error").html("");
+			status = true;
+		}
+		if (status) {
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : $("#form_login").serialize(),
+				success : function(data){
+					if(data == "NOT_REGISTERED"){
+						email.addClass("border-danger");
+						$("#e_error").html("<span class='text-danger'>It seems like you are not registered</span>");
+					}else if (data == "PASSWORD NOT MATCHED DUMBASS") {
+						pass.addClass("border-danger");
+						$("#p_error").html("<span class='text-danger'>Please Enter the correct Password</span>");
+						status = false;
+					}else{
+						console.log(data);
+						window.location.href = DOMAIN+"/dashboard.php";
+						//alert(data);
+					}
+				}
+			})
 		}
 	})
 })

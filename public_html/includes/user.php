@@ -25,7 +25,7 @@ class User {
 		}
 	}
 
-	public function createUserAccount($username,$email,$password,$usertype){
+	public function createUserAccount($username,$email,$password,$userlevel){
 		//utk melindungi aplikasi sql injection
 		//menggunakan prepare statement
 		if ($this->emailExists($email)) {
@@ -35,7 +35,7 @@ class User {
 			$date = date("Y-m-d");
 			$notes = "";
 			$pre_stmt = $this->con->prepare("INSERT INTO `user`(`username`, `email`, `password`, `user_level`, `register_date`, `last_login`, `notes`) VALUES (?,?,?,?,?,?,?)");
-			$pre_stmt->bind_param("sssssss",$username,$email,$pass_hash,$usertype,$date,$date,$notes);
+			$pre_stmt->bind_param("sssssss",$username,$email,$pass_hash,$userlevel,$date,$date,$notes);
 			$result = $pre_stmt->execute() OR DIE($this->con->error);
 			if ($result) {
 				return $this->con->insert_id;
@@ -47,7 +47,7 @@ class User {
 	}
 
 	public function userLogin($email,$password){
-		$pre_stmt = $this->con->prepare("SELECT id,username,password,last_login FROM user WHERE email= ?");
+		$pre_stmt = $this->con->prepare("SELECT id,username,password,last_login FROM user WHERE email = ?");
 		$pre_stmt->bind_param("s",$email);
 		$pre_stmt->execute() OR DIE($this->con->error);
 		$result = $pre_stmt->get_result();
@@ -64,7 +64,7 @@ class User {
 
 					//disini kita memperbarui data waktu terakhir user masuk/login
 					$last_login = date("Y-m-d h:m:s");
-					$pre_stmt = $this->con->prepare("UPDATE user SET last_login = ? WHERE email= ? ");
+					$pre_stmt = $this->con->prepare("UPDATE user SET last_login = ? WHERE email = ? ");
 					$pre_stmt->bind_param("ss",$last_login,$email);
 					$result = $pre_stmt->execute() OR DIE($this->con->error);
 					if ($result) {
@@ -73,7 +73,7 @@ class User {
 						return 0;
 					}
 				}else{
-					return "PASSWORD_NOT_MATCH";
+					return "Access denied. Please try again.";
 				}
 			}
 		}
