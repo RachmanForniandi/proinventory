@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2018 at 03:37 AM
+-- Generation Time: Mar 14, 2018 at 07:10 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -39,7 +39,11 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `parent_category`, `category_name`, `status`) VALUES
 (1, 0, 'Electronics', '1'),
-(2, 1, 'Mobile Phone', '1');
+(2, 1, 'Mobile Phone', '1'),
+(3, 0, 'Watch Gear', '1'),
+(5, 0, 'Gadgets', '1'),
+(6, 0, 'Garments', '1'),
+(7, 0, 'Laptop', '1');
 
 -- --------------------------------------------------------
 
@@ -95,7 +99,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --

@@ -135,4 +135,27 @@ $(document).ready(function(){
 			}
 		})
 	}
+
+		//menambahkan category item
+		$("#category_form").on("submit",function(){
+			if ($("#category_name").val() == "") {
+				$("#category_name").addClass("border-danger");
+				$("#cat_error").html("<span class='text-danger'>Please enter the category name.</span>");
+			}else{
+				$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : $("#category_form").serialize(),
+				success : function(data){
+					if (data == "CATEGORY_ADDED") {
+						$("#category_name").removeClass("border-danger");
+						$("#cat_error").html("<span class='text-success'>New category added successfully.</span>");
+						$("#category_name").val("");
+					}else{
+						alert(data);
+					}
+				}
+			})
+		}
+	})
 })

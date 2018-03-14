@@ -25,8 +25,16 @@ if (isset($_POST["getCategory"])){
 	$obj = new DBOperation();
 	$rows = $obj->getAllRecord("categories");
 	foreach ($rows as $row) {
-		echo "<option value='".$row["parent_cat"]."'>".$row["category_name"]."</option>";
+		echo "<option value='".$row["category_id"]."'>".$row["category_name"]."</option>";
 	}
+	exit();
+}
+
+//untuk menambahkan nama category item
+if (isset($_POST["category_name"]) AND isset($_POST["parent_cat"])) {
+	$obj = new DBOperation();
+	$result = $obj->addCategory($_POST["parent_cat"],$_POST["category_name"]);
+	echo $result;
 	exit();
 }
 
