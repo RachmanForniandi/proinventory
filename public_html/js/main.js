@@ -54,17 +54,21 @@ $(document).ready(function(){
 			$("#t_error").html("");
 			status = true;
 		}
-		if (pass1.val() == pass2.val() && status == true) {
+		if ((pass1.val() == pass2.val()) && status == true) {
+			$(".overlay").show();
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
 				data : $("#register_form").serialize(),
 				success : function(data){
 					if(data == "EMAIL_ALREADY_EXISTS"){
+						$(".overlay").hide();
 						alert("It seems like your email is already used");
 					}else if (data == "SOME_ERROR_OCCURED") {
+						$(".overlay").hide();
 						alert("Somethings wrong");
 					}else{
+						$(".overlay").hide();
 						window.location.href= encodeURI(DOMAIN+"/index.php?msg=You are registered. Now you may proceed.");
 					}
 				}
@@ -100,19 +104,23 @@ $(document).ready(function(){
 			status = true;
 		}
 		if (status) {
+			$(".overlay").show();
 			$.ajax({
 				url : DOMAIN+"/includes/process.php",
 				method : "POST",
 				data : $("#form_login").serialize(),
 				success : function(data){
-					if(data == "NOT_REGISTERED"){
+					if(data == "NOT_REGISTERED"){	
+						$(".overlay").hide();
 						email.addClass("border-danger");
 						$("#e_error").html("<span class='text-danger'>It seems like you are not registered</span>");
 					}else if (data == "PASSWORD NOT MATCHED DUMBASS") {
+						$(".overlay").hide();
 						pass.addClass("border-danger");
 						$("#p_error").html("<span class='text-danger'>Please Enter the correct Password</span>");
 						status = false;
 					}else{
+						$(".overlay").hide();
 						console.log(data);
 						window.location.href = DOMAIN+"/dashboard.php";
 						//alert(data);

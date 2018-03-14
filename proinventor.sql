@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2018 at 07:10 AM
+-- Generation Time: Mar 14, 2018 at 08:31 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -67,11 +67,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `user_level`, `register_date`, `last_login`, `notes`) VALUES
-(1, 'Rachman', 'rachmanforniandi@gmail.com', '$2y$08$ZFtVrnybBMDUgX41wUtEnuf5FphQ69bPNdOiQuUZw5thGQvvLSQVa', 'admin', '2018-03-05', '2018-03-10 07:03:39', ''),
+(1, 'Rachman', 'rachmanforniandi@gmail.com', '$2y$08$ZFtVrnybBMDUgX41wUtEnuf5FphQ69bPNdOiQuUZw5thGQvvLSQVa', 'admin', '2018-03-05', '2018-03-14 06:03:17', ''),
 (2, 'Test', 'rachmanforniandi1st@gmail.com', '$2y$08$td1YoP4IJx/jvUFCV6O1uOXgvZrBeoRK9ONrZK0tLeOcM7Kij.kt2', 'admin', '2018-03-05', '2018-03-05 05:03:33', ''),
 (3, 'Rachman Ridwan', 'rachmanridwan@gmail.com', '$2y$08$h3/stLWz7LQxRW1CEPeWS.YU06vSN1HCd2DsNV4OVLwzE9ihGPB7W', 'admin', '2018-03-06', '2018-03-08 08:03:15', ''),
 (4, 'Firda Ayuwima', 'firdaayuwima@gmail.com', '$2y$08$Sewkz4Lt.RXk4rG4b7qTeutzoDTMp53/AvWfm1fvquUXSCUZY8Sa6', 'admin', '2018-03-08', '2018-03-08 09:03:37', ''),
-(5, 'Yanto Kurniawan', 'yantokurniawan@gmail.com', '$2y$08$GgDOK4cAxN751Titpc8VaeNL94rer2GS7lRaVK10X./vOoDlG1gom', 'user', '2018-03-08', '2018-03-08 09:03:26', '');
+(5, 'Yanto Kurniawan', 'yantokurniawan@gmail.com', '$2y$08$GgDOK4cAxN751Titpc8VaeNL94rer2GS7lRaVK10X./vOoDlG1gom', 'user', '2018-03-08', '2018-03-08 09:03:26', ''),
+(6, 'Erina Michella', 'erinamichella@gmail.com', '$2y$08$d90srUpvLltmePtb0CM2WOFwUd5TMZehsuIRpcLCko0Wzs3BHCrp.', 'admin', '2018-03-14', '2018-03-14 08:03:48', '');
 
 --
 -- Indexes for dumped tables
@@ -104,7 +105,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
