@@ -166,4 +166,27 @@ $(document).ready(function(){
 			})
 		}
 	})
+
+	//menambahkan nama brand item
+	$("#brand_form").on("submit",function(){
+		if ($("#brand_name").val() == "") {
+			$("#brand_name").addClass("border-danger");
+			$("#brand_error").html("<span class='text-danger'>Please enter the brand name.</span>");
+		}else{
+			$.ajax({
+				url : DOMAIN+"/includes/process.php",
+				method : "POST",
+				data : $("#brand_form").serialize(),
+				success : function(data){
+					if (data == "BRAND_ADDED") {
+						$("#brand_name").removeClass("border-danger");
+						$("#brand_error").html("<span class='text-success'>New brand added successfully.</span>");
+						$("#brand_name").val("");
+					}else{
+						alert(data);
+					}
+				}
+			})	
+		}
+	})	
 })

@@ -38,5 +38,12 @@ if (isset($_POST["category_name"]) AND isset($_POST["parent_cat"])) {
 	exit();
 }
 
+//untuk menambahkan nama brand item
+if (isset($_POST["brand_name"])) {
+	$obj = new DBOperation();
+	$result = $obj->addBrand($_POST["brand_name"]);
+	echo $result;
+	exit();
+}
 
 ?>

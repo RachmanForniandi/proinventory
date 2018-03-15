@@ -24,6 +24,18 @@
 		}
 	}
 
+	public function addBrand($brand_name){
+		$pre_stmt = $this->con->prepare("INSERT INTO `brands`(`brand_name`, `status`) VALUES (?,?)");
+		$status = 1;
+		$pre_stmt->bind_param("si",$brand_name,$status);
+		$result = $pre_stmt->execute() OR DIE($this->con->error);
+		if ($result) {
+			return "BRAND_ADDED";
+		}else{
+			return 0;
+		}
+	}
+
 	public function getAllRecord($table){
 		$pre_stmt = $this->con->prepare("SELECT * FROM ".$table);
 		$pre_stmt->execute() OR DIE($this->con->error);
