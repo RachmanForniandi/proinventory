@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2018 at 08:11 AM
+-- Generation Time: Mar 17, 2018 at 02:54 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -69,7 +69,32 @@ INSERT INTO `categories` (`category_id`, `parent_category`, `category_name`, `st
 (6, 0, 'Garments', '1'),
 (7, 0, 'Laptop', '1'),
 (8, 0, 'Modem', '1'),
-(9, 0, 'Software', '1');
+(9, 0, 'Software', '1'),
+(10, 0, 'Flash Disk', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `product_price` double NOT NULL,
+  `product_stock` int(11) NOT NULL,
+  `added_date` date NOT NULL,
+  `product_status` enum('1','0') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `category_id`, `brand_id`, `product_name`, `product_price`, `product_stock`, `added_date`, `product_status`) VALUES
+(1, 2, 1, 'Samsung Galaxy S9', 12000000, 200, '2018-03-17', '1');
 
 -- --------------------------------------------------------
 
@@ -93,7 +118,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `user_level`, `register_date`, `last_login`, `notes`) VALUES
-(1, 'Rachman', 'rachmanforniandi@gmail.com', '$2y$08$ZFtVrnybBMDUgX41wUtEnuf5FphQ69bPNdOiQuUZw5thGQvvLSQVa', 'admin', '2018-03-05', '2018-03-15 06:03:43', ''),
+(1, 'Rachman', 'rachmanforniandi@gmail.com', '$2y$08$ZFtVrnybBMDUgX41wUtEnuf5FphQ69bPNdOiQuUZw5thGQvvLSQVa', 'admin', '2018-03-05', '2018-03-17 11:03:31', ''),
 (2, 'Test', 'rachmanforniandi1st@gmail.com', '$2y$08$td1YoP4IJx/jvUFCV6O1uOXgvZrBeoRK9ONrZK0tLeOcM7Kij.kt2', 'admin', '2018-03-05', '2018-03-05 05:03:33', ''),
 (3, 'Rachman Ridwan', 'rachmanridwan@gmail.com', '$2y$08$h3/stLWz7LQxRW1CEPeWS.YU06vSN1HCd2DsNV4OVLwzE9ihGPB7W', 'admin', '2018-03-06', '2018-03-08 08:03:15', ''),
 (4, 'Firda Ayuwima', 'firdaayuwima@gmail.com', '$2y$08$Sewkz4Lt.RXk4rG4b7qTeutzoDTMp53/AvWfm1fvquUXSCUZY8Sa6', 'admin', '2018-03-08', '2018-03-08 09:03:37', ''),
@@ -119,6 +144,15 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `category_name` (`category_name`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`),
+  ADD UNIQUE KEY `product_name` (`product_name`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `brand_id` (`brand_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -138,12 +172,28 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

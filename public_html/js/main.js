@@ -131,15 +131,31 @@ $(document).ready(function(){
 	})
 
 	//fetch category
-	fecth_category();
-	function fecth_category(){
+	fetch_category();
+	function fetch_category(){
 		$.ajax({
 			url : DOMAIN+"/includes/process.php",
 			method : "POST",
 			data : {getCategory:1},
 			success : function(data){
 				var root = "<option value='0'>Root</option>";
+				var Choose = "<option value='0'>Choose Category</option>";
 				$("#parent_cat").html(root+data);
+				$("#select_cat").html(Choose+data);
+			}
+		})
+	}
+
+	//fetch category
+	fetch_brand();
+	function fetch_brand(){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : {getBrand:1},
+			success : function(data){
+				var Choose = "<option value='0'>Choose Brand</option>";
+				$("#select_brand").html(Choose+data);
 			}
 		})
 	}
@@ -188,5 +204,22 @@ $(document).ready(function(){
 				}
 			})	
 		}
+	})
+
+	//menambahkan product
+	$("#product_form").on("submit",function(){
+		$.ajax({
+			url : DOMAIN+"/includes/process.php",
+			method : "POST",
+			data : $("#product_form").serialize(),
+			success : function(data){
+				if (data == "PRODUCT_ADDED") {
+					alert(data);
+				}else{
+					console.log(data);
+					alert(data);
+				}
+			}
+		})
 	})	
 })

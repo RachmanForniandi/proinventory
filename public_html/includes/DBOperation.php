@@ -36,6 +36,19 @@
 		}
 	}
 
+	public function addProduct($category_id,$brand_id,$product_name,$price,$stock,$date){
+		$pre_stmt = $this->con->prepare("INSERT INTO `products`(`category_id`, `brand_id`, `product_name`, `product_price`, `product_stock`, `added_date`, `product_status`) 
+			VALUES (?,?,?,?,?,?,?)");
+		$status = 1;
+		$pre_stmt->bind_param("iisdisi",$category_id,$brand_id,$product_name,$price,$stock,$date,$status);
+		$result = $pre_stmt->execute() OR DIE($this->con->error);
+		if ($result) {
+			return "NEW_PRODUCT_ADDED";
+		}else{
+			return 0;
+		}
+	}
+
 	public function getAllRecord($table){
 		$pre_stmt = $this->con->prepare("SELECT * FROM ".$table);
 		$pre_stmt->execute() OR DIE($this->con->error);
