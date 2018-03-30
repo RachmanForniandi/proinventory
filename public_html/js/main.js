@@ -7,6 +7,7 @@ $(document).ready(function(){
 		var  pass1 = $("#password1");
 		var  pass2 = $("#password2");
 		var  type = $("#userlevel");
+		
 		//for email
 		var e_patt = new RegExp(/^[a-z0-9_-]+(\.[a-z0-9_-]+)*@[a-z0-9_-]+(\.[a-z0-9_-]+)*(\.[a-z]{2,4})$/);
 		if (name.val == "" || name.val().length < 6) {
@@ -175,6 +176,7 @@ $(document).ready(function(){
 						$("#category_name").removeClass("border-danger");
 						$("#cat_error").html("<span class='text-success'>New category added successfully.</span>");
 						$("#category_name").val("");
+						fetch_category();
 					}else{
 						alert(data);
 					}
@@ -198,6 +200,7 @@ $(document).ready(function(){
 						$("#brand_name").removeClass("border-danger");
 						$("#brand_error").html("<span class='text-success'>New brand added successfully.</span>");
 						$("#brand_name").val("");
+						fetch_brand();
 					}else{
 						alert(data);
 					}
@@ -213,8 +216,9 @@ $(document).ready(function(){
 			method : "POST",
 			data : $("#product_form").serialize(),
 			success : function(data){
-				if (data == "PRODUCT_ADDED") {
-					alert(data);
+				if (data == "NEW_PRODUCT_ADDED") {
+					alert("New Product Added successfully");
+					$("#select_cat").val("");
 				}else{
 					console.log(data);
 					alert(data);
