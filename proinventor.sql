@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2018 at 02:54 PM
+-- Generation Time: Apr 01, 2018 at 10:55 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -42,7 +42,9 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `status`) VALUES
 (4, 'Lenovo', '1'),
 (5, 'HP', '1'),
 (6, 'Huawei', '1'),
-(7, 'Adobe', '1');
+(7, 'Adobe', '1'),
+(8, 'ASUS', '1'),
+(9, 'SanDisk', '1');
 
 -- --------------------------------------------------------
 
@@ -70,7 +72,9 @@ INSERT INTO `categories` (`category_id`, `parent_category`, `category_name`, `st
 (7, 0, 'Laptop', '1'),
 (8, 0, 'Modem', '1'),
 (9, 0, 'Software', '1'),
-(10, 0, 'Flash Disk', '1');
+(10, 0, 'Flash Disk', '1'),
+(11, 0, 'Power Bank', '1'),
+(12, 9, 'AntiVirus', '1');
 
 -- --------------------------------------------------------
 
@@ -94,7 +98,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `category_id`, `brand_id`, `product_name`, `product_price`, `product_stock`, `added_date`, `product_status`) VALUES
-(1, 2, 1, 'Samsung Galaxy S9', 12000000, 200, '2018-03-17', '1');
+(1, 2, 1, 'Samsung Galaxy S9', 12000000, 200, '2018-03-17', '1'),
+(2, 8, 6, 'Modem Huawei e345', 550000, 300, '2018-03-29', '1'),
+(3, 10, 9, 'Red Cursor Flash Disk 16 GB', 100000, 500, '2018-04-01', '1'),
+(4, 7, 4, 'Notebook Thinkpad X230', 6000000, 300, '2018-04-01', '1'),
+(5, 9, 7, 'Adobe Dreamweaver CC 2018', 320000, 350, '2018-04-01', '1');
 
 -- --------------------------------------------------------
 
@@ -118,7 +126,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `user_level`, `register_date`, `last_login`, `notes`) VALUES
-(1, 'Rachman', 'rachmanforniandi@gmail.com', '$2y$08$ZFtVrnybBMDUgX41wUtEnuf5FphQ69bPNdOiQuUZw5thGQvvLSQVa', 'admin', '2018-03-05', '2018-03-17 11:03:31', ''),
+(1, 'Rachman', 'rachmanforniandi@gmail.com', '$2y$08$ZFtVrnybBMDUgX41wUtEnuf5FphQ69bPNdOiQuUZw5thGQvvLSQVa', 'admin', '2018-03-05', '2018-04-01 05:04:07', ''),
 (2, 'Test', 'rachmanforniandi1st@gmail.com', '$2y$08$td1YoP4IJx/jvUFCV6O1uOXgvZrBeoRK9ONrZK0tLeOcM7Kij.kt2', 'admin', '2018-03-05', '2018-03-05 05:03:33', ''),
 (3, 'Rachman Ridwan', 'rachmanridwan@gmail.com', '$2y$08$h3/stLWz7LQxRW1CEPeWS.YU06vSN1HCd2DsNV4OVLwzE9ihGPB7W', 'admin', '2018-03-06', '2018-03-08 08:03:15', ''),
 (4, 'Firda Ayuwima', 'firdaayuwima@gmail.com', '$2y$08$Sewkz4Lt.RXk4rG4b7qTeutzoDTMp53/AvWfm1fvquUXSCUZY8Sa6', 'admin', '2018-03-08', '2018-03-08 09:03:37', ''),
@@ -167,17 +175,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --
