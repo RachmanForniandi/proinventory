@@ -15,7 +15,7 @@ class Manage{
 	public function manageRecordWithPagination($table,$pno){
 		$a = $this->pagination($this->con,$table,$pno,5);
 		if ($table == "categories") {
-			$sql = "SELECT p.category_name AS category, c.category_name AS parent, p.status FROM categories p LEFT JOIN categories c ON p.parent_category = c.category_id ";
+			$sql = "SELECT p.category_name AS category, c.category_name AS parent, p.status FROM categories p LEFT JOIN categories c ON p.parent_category = c.category_id";
 		}
 		$result = $this->con->query($sql) OR DIE($this->con->error);
 		$rows = array();
@@ -67,11 +67,37 @@ class Manage{
 		return ["pagination"=>$pagination,"limit"=>$limit];
 	}
 
+	public function deleteRecord($table,$pk,$id){
+		if ($table == "categories") {
+			$pre_stmt = $this->con->prepare("SELECT ".$id." FROM categories WHERE parent_category = ?");
+			$pre_stmt->bind_param("i",$id);
+			$pre_stmt->execute();
+			$result = $pre_stmt->get_result() OR DIE($this->con->error);
+			if ($result->num_rows > 0) {
+				return "DEPENDENT_CATEGORY";
+			}else{
+				$pre_stmt = $this->con->prepare("DELETE FROM ".$table." WHERE ".$pk." = ?");
+				$pre_stmt->bind_param("i",$id);
+				$result = $pre_stmt->execute() OR DIE($this->con->error);
+				if ($result) {
+					return "CATEGORY_DELETED";
+				}
+			}
+		}else{
+			$this->con->prepare("DELETE FROM ".$table." WHERE ".$pk." = ?");
+			$pre_stmt->bind_param("i",$id);
+			$result = $pre_stmt->execute() OR DIE($this->con->error);
+			if ($result) {
+					return "DELETED";
+			}
+		}
+	}
+
 }
 
-/*$obj = new Manage();
-echo "<pre>";
-print_r($obj->manageRecordWithPagination("categories",1));
-*/
+//$obj = new Manage();
+//echo "<pre>";
+//print_r($obj->manageRecordWithPagination("categories",1));
+//echo $obj->deleteRecord("categories","category_id",3);
 
 ?>
